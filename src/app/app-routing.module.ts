@@ -6,13 +6,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/home/home.component').then((m) => m.HomeComponent),
   },
-  // {
-  //   path: 'watchlist',
-  //   loadComponent: () =>
-  //     import('./components/watchlist/watchlist.component').then(
-  //       (m) => m.WatchlistComponent,
-  //     ),
-  // },
+  {
+    path: 'watchlist',
+    loadComponent: () =>
+      import('./components/watchlist/watchlist.component').then(
+        (m) => m.WatchlistComponent,
+      ),
+  },
   {
     path: 'movie/:id',
     loadComponent: () =>
