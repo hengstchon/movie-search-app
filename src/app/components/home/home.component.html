@@ -4,7 +4,7 @@
     [(ngModel)]="searchTerm"
     (keyup.enter)="searchMovies()"
     placeholder="Enter movie name to search..."
-    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 min-w-80"
   />
   <button
     (click)="searchMovies()"
@@ -15,22 +15,27 @@
 </div>
 
 <div
-  class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5 p-5"
+  class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 p-5 mt-5"
   *ngIf="movies.length"
 >
   <div
-    class="border border-gray-200 p-2.5 text-center rounded-lg"
+    class="border border-gray-200 p-2.5 text-center rounded-lg flex flex-col"
     *ngFor="let movie of movies"
   >
-    <img
-      [src]="movie.Poster"
-      [alt]="movie.Title"
-      *ngIf="movie.Poster !== 'N/A'"
-      class="w-full h-auto"
-    />
-    <div class="mt-2">
-      <h3 class="text-lg font-semibold">{{ movie.Title }}</h3>
-      <p class="text-gray-600">{{ movie.Year }}</p>
+    <div class="flex-grow">
+      <img
+        [src]="movie.Poster"
+        [alt]="movie.Title"
+        class="w-full h-[360px] object-cover"
+        *ngIf="movie.Poster !== 'N/A'"
+      />
+      <div class="mt-2">
+        <h3 class="text-lg font-semibold">{{ movie.Title }}</h3>
+        <p class="text-gray-600">{{ movie.Year }}</p>
+      </div>
+    </div>
+
+    <div class="mt-auto">
       <button
         [routerLink]="['/movie', movie.imdbID]"
         class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full"
