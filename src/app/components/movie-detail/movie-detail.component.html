@@ -1,18 +1,34 @@
-<div class="p-5 flex gap-5" *ngIf="movie">
-  <img
-    [src]="movie.Poster"
-    [alt]="movie.Title"
-    *ngIf="movie.Poster !== 'N/A'"
-    class="max-w-[300px] h-auto"
-  />
-  <div class="flex-1">
-    <h1>{{ movie.Title }}</h1>
-    <p><strong>Year:</strong> {{ movie.Year }}</p>
-    <p><strong>Director:</strong> {{ movie.Director }}</p>
-    <p><strong>Actors:</strong> {{ movie.Actors }}</p>
-    <p><strong>Rating:</strong> {{ movie.imdbRating }}</p>
-    <p><strong>Plot:</strong> {{ movie.Plot }}</p>
-    <button (click)="addToWatchlist(movie)">Add to Watchlist</button>
+<div class="p-8 flex gap-8 bg-gray-100 rounded-lg shadow-lg" *ngIf="movie">
+  <div class="flex flex-col gap-4">
+    <img
+      [src]="movie.Poster"
+      [alt]="movie.Title"
+      *ngIf="movie.Poster !== 'N/A'"
+      class="max-w-[300px] h-auto rounded-md shadow-md"
+    />
+    <button
+      (click)="addToWatchlist(movie)"
+      class="px-6 py-2 text-white font-medium rounded-lg bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out"
+    >
+      Add to Watchlist
+    </button>
+  </div>
+  <div class="flex-1 space-y-4">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ movie.Title }}</h1>
+    <p class="text-gray-700">
+      <span class="font-semibold">Year:</span> {{ movie.Year }}
+    </p>
+    <p class="text-gray-700">
+      <span class="font-semibold">Director:</span> {{ movie.Director }}
+    </p>
+    <p class="text-gray-700">
+      <span class="font-semibold">Actors:</span> {{ movie.Actors }}
+    </p>
+    <p class="text-gray-700">
+      <span class="font-semibold">Rating:</span> {{ movie.imdbRating }}
+    </p>
+    <p class="text-gray-700">
+      <span class="font-semibold">Plot:</span> {{ movie.Plot }}
+    </p>
   </div>
 </div>
-
