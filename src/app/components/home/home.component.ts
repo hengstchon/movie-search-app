@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
+import { WatchlistService } from '../../services/watchlist.service';
 import { Movie } from '../../interfaces/movie';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
@@ -19,12 +20,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private movieService: MovieService,
+    private watchlistService: WatchlistService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    // Check if there's a search term in the URL
     this.route.queryParams.subscribe((params) => {
       if (params['q']) {
         this.searchTerm = params['q'];
@@ -34,7 +35,6 @@ export class HomeComponent implements OnInit {
   }
 
   searchMovies() {
-    // Update URL with search term
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { q: this.searchTerm },
@@ -57,13 +57,6 @@ export class HomeComponent implements OnInit {
   }
 
   addToWatchlist(movie: Movie) {
-    const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
-    if (!watchlist.some((m: Movie) => m.imdbID === movie.imdbID)) {
-      watchlist.push(movie);
-      localStorage.setItem('watchlist', JSON.stringify(watchlist));
-      alert('Added to watchlist!');
-    } else {
-      alert('Movie is already in watchlist!');
-    }
+    this.watchlistService.addToWatchlist(movie);
   }
 }

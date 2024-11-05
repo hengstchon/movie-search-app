@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
+import { WatchlistService } from '../../services/watchlist.service';
 import { MovieDetail } from '../../interfaces/movie';
 
 @Component({
@@ -16,6 +17,7 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
+    private watchlistService: WatchlistService,
   ) {}
 
   ngOnInit() {
@@ -28,13 +30,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
   addToWatchlist(movie: MovieDetail) {
-    const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
-    if (!watchlist.some((m: MovieDetail) => m.imdbID === movie.imdbID)) {
-      watchlist.push(movie);
-      localStorage.setItem('watchlist', JSON.stringify(watchlist));
-      alert('Added to watchlist!');
-    } else {
-      alert('Movie is already in watchlist!');
-    }
+    this.watchlistService.addToWatchlist(movie);
   }
 }

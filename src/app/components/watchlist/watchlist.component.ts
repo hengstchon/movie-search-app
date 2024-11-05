@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Movie } from '../../interfaces/movie';
 import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
+import { WatchlistService } from '../../services/watchlist.service';
 
 @Component({
   selector: 'app-watchlist',
@@ -13,16 +14,18 @@ import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 export class WatchlistComponent implements OnInit {
   movies: Movie[] = [];
 
+  constructor(private watchlistService: WatchlistService) {}
+
   ngOnInit() {
     this.loadWatchlist();
   }
 
   loadWatchlist() {
-    this.movies = JSON.parse(localStorage.getItem('watchlist') || '[]');
+    this.movies = this.watchlistService.getWatchlist();
   }
 
   removeFromWatchlist(movie: Movie) {
-    this.movies = this.movies.filter((m) => m.imdbID !== movie.imdbID);
-    localStorage.setItem('watchlist', JSON.stringify(this.movies));
+    this.watchlistService.removeFromWatchlist(movie);
+    this.loadWatchlist();
   }
 }
