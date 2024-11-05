@@ -35,3 +35,7 @@ pnpm start
 Navigate to `http://localhost:4200/` in your browser. The application will automatically reload if you change any of the source files.
 
 Enjoy exploring the application! 🚀
+
+## Development Documentation
+
+For detailed technical implementation and development decisions, please see [Development Documentation](./dev-doc.md).
