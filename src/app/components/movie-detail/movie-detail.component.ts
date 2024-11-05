@@ -8,26 +8,7 @@ import { MovieDetail } from '../../interfaces/movie';
   selector: 'app-movie-detail',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="p-5 flex gap-5" *ngIf="movie">
-      <img
-        [src]="movie.Poster"
-        [alt]="movie.Title"
-        *ngIf="movie.Poster !== 'N/A'"
-        class="max-w-[300px] h-auto"
-      />
-      <div class="flex-1">
-        <h1>{{ movie.Title }}</h1>
-        <p><strong>Year:</strong> {{ movie.Year }}</p>
-        <p><strong>Director:</strong> {{ movie.Director }}</p>
-        <p><strong>Actors:</strong> {{ movie.Actors }}</p>
-        <p><strong>Rating:</strong> {{ movie.imdbRating }}</p>
-        <p><strong>Plot:</strong> {{ movie.Plot }}</p>
-        <button (click)="addToWatchlist(movie)">Add to Watchlist</button>
-      </div>
-    </div>
-  `,
-  styles: [],
+  templateUrl: './movie-detail.component.html',
 })
 export class MovieDetailComponent implements OnInit {
   movie?: MovieDetail;
