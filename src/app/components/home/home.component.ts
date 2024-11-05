@@ -14,10 +14,12 @@ import { Movie } from '../../interfaces/movie';
       <input
         type="text"
         [(ngModel)]="searchTerm"
+        (keyup.enter)="searchMovies()"
         placeholder="Enter movie name to search..."
         class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
       />
       <button
+        (click)="searchMovies()"
         class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
       >
         Search
@@ -48,6 +50,7 @@ import { Movie } from '../../interfaces/movie';
             View Details
           </button>
           <button
+            (click)="addToWatchlist(movie)"
             class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 w-full"
           >
             Add to Watchlist
@@ -62,4 +65,27 @@ export class HomeComponent {
   movies: Movie[] = [];
 
   constructor(private movieService: MovieService) {}
+
+  searchMovies() {
+    if (this.searchTerm.trim()) {
+      this.movieService.searchMovies(this.searchTerm).subscribe((response) => {
+        if (response.Response === 'True') {
+          this.movies = response.Search;
+        } else {
+          this.movies = [];
+        }
+      });
+    }
+  }
+
+  addToWatchlist(movie: Movie) {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
+    if (!watchlist.some((m: Movie) => m.imdbID === movie.imdbID)) {
+      watchlist.push(movie);
+      localStorage.setItem('watchlist', JSON.stringify(watchlist));
+      alert('Added to watchlist!');
+    } else {
+      alert('Movie is already in watchlist!');
+    }
+  }
 }
