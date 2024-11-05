@@ -14,15 +14,9 @@
   </button>
 </div>
 
-<div
-  class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 p-5 mt-5"
-  *ngIf="movies.length"
->
-  <app-movie-card
-    *ngFor="let movie of movies"
-    [movie]="movie"
-    [actionButtonText]="getMovieAction(movie).text"
-    [actionButtonClass]="getMovieAction(movie).class"
-    (actionClick)="onMovieAction($event)"
-  ></app-movie-card>
-</div>
+<app-movie-list
+  [movies]="movies"
+  [getMovieAction]="getMovieAction"
+  [onMovieAction]="onMovieAction"
+  emptyMessage="No movies found. Try searching for something!"
+></app-movie-list>

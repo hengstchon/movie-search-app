@@ -1,0 +1,16 @@
+<div
+  class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 p-5 mt-5"
+  *ngIf="movies.length"
+>
+  <app-movie-card
+    *ngFor="let movie of movies"
+    [movie]="movie"
+    [actionButtonText]="getMovieAction(movie).text"
+    [actionButtonClass]="getMovieAction(movie).class"
+    (actionClick)="onMovieAction($event)"
+  ></app-movie-card>
+</div>
+<p *ngIf="!movies.length" class="text-center text-gray-500 mt-8">
+  {{ emptyMessage }}
+</p>
+

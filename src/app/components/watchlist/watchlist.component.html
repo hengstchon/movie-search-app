@@ -2,17 +2,10 @@
   <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">
     My Watchlist
   </h2>
-  <div
-    class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 mt-5 p-5"
-    *ngIf="movies.length"
-  >
-    <app-movie-card
-      *ngFor="let movie of movies"
-      [movie]="movie"
-      actionButtonText="Remove"
-      actionButtonClass="bg-red-500 hover:bg-red-600"
-      (actionClick)="removeFromWatchlist($event)"
-    ></app-movie-card>
-  </div>
-  <p *ngIf="!movies.length">Watchlist is empty</p>
+  <app-movie-list
+    [movies]="movies"
+    [getMovieAction]="getMovieAction"
+    [onMovieAction]="onMovieAction"
+    emptyMessage="Watchlist is empty"
+  ></app-movie-list>
 </div>

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Movie } from '../../interfaces/movie';
-import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
+import { MovieListComponent } from '../shared/movie-list/movie-list.component';
 import { WatchlistService } from '../../services/watchlist.service';
 
 @Component({
   selector: 'app-watchlist',
   standalone: true,
-  imports: [CommonModule, RouterLink, MovieCardComponent],
+  imports: [CommonModule, RouterLink, MovieListComponent],
   templateUrl: './watchlist.component.html',
 })
 export class WatchlistComponent implements OnInit {
@@ -24,8 +24,12 @@ export class WatchlistComponent implements OnInit {
     this.movies = this.watchlistService.getWatchlist();
   }
 
-  removeFromWatchlist(movie: Movie) {
+  getMovieAction = (movie: Movie) => {
+    return { text: 'Remove', class: 'bg-red-500 hover:bg-red-600' };
+  };
+
+  onMovieAction = (movie: Movie) => {
     this.watchlistService.removeFromWatchlist(movie);
     this.loadWatchlist();
-  }
+  };
 }
