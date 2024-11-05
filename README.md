@@ -6,7 +6,14 @@
 
 1. In the `src/app/environments` directory, copy `environment.template.ts` and rename it to `environment.ts`
 2. Get your API key from [OMDB API](http://www.omdbapi.com/apikey.aspx)
-3. In `environment.ts`, replace `your_api_key_here` with your actual API key
+3. In `environment.ts`, replace `YOUR_API_KEY` with your actual API key
+
+```typescript
+// environment.ts
+export const environment = {
+  omdbApiKey: "YOUR_API_KEY",
+};
+```
 
 ### Installing Dependencies
 
