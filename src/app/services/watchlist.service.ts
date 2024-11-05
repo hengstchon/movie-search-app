@@ -12,17 +12,20 @@ export class WatchlistService {
     if (!this.isInWatchlist(movie)) {
       watchlist.push(movie);
       localStorage.setItem(this.watchlistKey, JSON.stringify(watchlist));
-      alert('Added to watchlist!');
+      alert(`Added movie: '${movie.Title}' to watchlist!`);
     } else {
-      alert('Movie is already in watchlist!');
+      alert(`Movie '${movie.Title}' is already in watchlist!`);
     }
   }
 
   removeFromWatchlist(movie: Movie): void {
-    const watchlist = this.getWatchlist().filter(
-      (m) => m.imdbID !== movie.imdbID,
-    );
-    localStorage.setItem(this.watchlistKey, JSON.stringify(watchlist));
+    if (confirm(`Are you sure you want to remove '${movie.Title}' from watchlist?`)) {
+      const watchlist = this.getWatchlist().filter(
+        (m) => m.imdbID !== movie.imdbID,
+      );
+      localStorage.setItem(this.watchlistKey, JSON.stringify(watchlist));
+      alert(`Removed '${movie.Title}' from watchlist!`);
+    }
   }
 
   getWatchlist(): Movie[] {
