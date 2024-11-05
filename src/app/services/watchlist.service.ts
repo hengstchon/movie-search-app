@@ -19,7 +19,11 @@ export class WatchlistService {
   }
 
   removeFromWatchlist(movie: Movie): void {
-    if (confirm(`Are you sure you want to remove '${movie.Title}' from watchlist?`)) {
+    if (
+      confirm(
+        `Are you sure you want to remove '${movie.Title}' from watchlist?`,
+      )
+    ) {
       const watchlist = this.getWatchlist().filter(
         (m) => m.imdbID !== movie.imdbID,
       );
