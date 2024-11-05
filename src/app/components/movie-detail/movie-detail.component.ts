@@ -29,7 +29,25 @@ export class MovieDetailComponent implements OnInit {
     }
   }
 
-  addToWatchlist(movie: MovieDetail) {
-    this.watchlistService.addToWatchlist(movie);
+  getWatchlistAction() {
+    return this.movie && this.watchlistService.isInWatchlist(this.movie)
+      ? {
+          text: 'Remove from Watchlist',
+          class: 'bg-red-500 hover:bg-red-600',
+        }
+      : {
+          text: 'Add to Watchlist',
+          class: 'bg-green-500 hover:bg-green-600',
+        };
+  }
+
+  onWatchlistAction() {
+    if (this.movie) {
+      if (this.watchlistService.isInWatchlist(this.movie)) {
+        this.watchlistService.removeFromWatchlist(this.movie);
+      } else {
+        this.watchlistService.addToWatchlist(this.movie);
+      }
+    }
   }
 }

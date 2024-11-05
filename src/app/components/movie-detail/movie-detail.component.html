@@ -7,10 +7,11 @@
       class="max-w-[300px] h-auto rounded-md shadow-md"
     />
     <button
-      (click)="addToWatchlist(movie)"
-      class="px-6 py-2 text-white font-medium rounded-lg bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out"
+      (click)="onWatchlistAction()"
+      class="px-6 py-2 text-white font-medium rounded-lg transition duration-200 ease-in-out"
+      [ngClass]="getWatchlistAction().class"
     >
-      Add to Watchlist
+      {{ getWatchlistAction().text }}
     </button>
   </div>
   <div class="flex-1 space-y-4">
