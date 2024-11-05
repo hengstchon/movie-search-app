@@ -13,11 +13,11 @@ export const routes: Routes = [
   //       (m) => m.WatchlistComponent,
   //     ),
   // },
-  // {
-  //   path: 'movie/:id',
-  //   loadComponent: () =>
-  //     import('./components/movie-detail/movie-detail.component').then(
-  //       (m) => m.MovieDetailComponent,
-  //     ),
-  // },
+  {
+    path: 'movie/:id',
+    loadComponent: () =>
+      import('./components/movie-detail/movie-detail.component').then(
+        (m) => m.MovieDetailComponent,
+      ),
+  },
 ];
