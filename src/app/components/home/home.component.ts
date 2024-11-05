@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../interfaces/movie';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, MovieCardComponent],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {

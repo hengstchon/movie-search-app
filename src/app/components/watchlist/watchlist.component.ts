@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Movie } from '../../interfaces/movie';
+import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 
 @Component({
   selector: 'app-watchlist',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MovieCardComponent],
   templateUrl: './watchlist.component.html',
 })
 export class WatchlistComponent implements OnInit {

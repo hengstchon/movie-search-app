@@ -6,38 +6,13 @@
     class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 mt-5 p-5"
     *ngIf="movies.length"
   >
-    <div
-      class="border border-gray-200 p-2.5 text-center rounded-lg flex flex-col"
+    <app-movie-card
       *ngFor="let movie of movies"
-    >
-      <div class="flex-grow">
-        <img
-          [src]="movie.Poster"
-          [alt]="movie.Title"
-          class="w-full h-[360px] object-cover"
-          *ngIf="movie.Poster !== 'N/A'"
-        />
-        <div class="mt-2">
-          <h3 class="text-lg font-semibold">{{ movie.Title }}</h3>
-          <p class="text-gray-600">{{ movie.Year }}</p>
-        </div>
-      </div>
-
-      <div class="mt-auto">
-        <button
-          [routerLink]="['/movie', movie.imdbID]"
-          class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full"
-        >
-          View Details
-        </button>
-        <button
-          (click)="removeFromWatchlist(movie)"
-          class="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full"
-        >
-          Remove
-        </button>
-      </div>
-    </div>
+      [movie]="movie"
+      actionButtonText="Remove"
+      actionButtonClass="bg-red-500 hover:bg-red-600"
+      (actionClick)="removeFromWatchlist($event)"
+    ></app-movie-card>
   </div>
   <p *ngIf="!movies.length">Watchlist is empty</p>
 </div>
