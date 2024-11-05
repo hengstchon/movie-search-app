@@ -7,7 +7,13 @@
       *ngIf="movie.Poster !== 'N/A'"
     />
     <div class="mt-2">
-      <h3 class="text-lg font-semibold">{{ movie.Title }}</h3>
+      <h3
+        class="text-lg font-semibold truncate"
+        [title]="movie.Title"
+        title="{{ movie.Title }}"
+      >
+        {{ movie.Title }}
+      </h3>
       <p class="text-gray-600">{{ movie.Year }}</p>
     </div>
   </div>
@@ -28,4 +34,3 @@
     </button>
   </div>
 </div>
-
