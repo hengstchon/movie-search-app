@@ -9,7 +9,7 @@ export class WatchlistService {
 
   addToWatchlist(movie: Movie | MovieDetail): void {
     const watchlist = this.getWatchlist();
-    if (!watchlist.some((m) => m.imdbID === movie.imdbID)) {
+    if (!this.isInWatchlist(movie)) {
       watchlist.push(movie);
       localStorage.setItem(this.watchlistKey, JSON.stringify(watchlist));
       alert('Added to watchlist!');
@@ -27,5 +27,9 @@ export class WatchlistService {
 
   getWatchlist(): Movie[] {
     return JSON.parse(localStorage.getItem(this.watchlistKey) || '[]');
+  }
+
+  isInWatchlist(movie: Movie | MovieDetail): boolean {
+    return this.getWatchlist().some((m) => m.imdbID === movie.imdbID);
   }
 }

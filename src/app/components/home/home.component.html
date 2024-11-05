@@ -21,8 +21,8 @@
   <app-movie-card
     *ngFor="let movie of movies"
     [movie]="movie"
-    actionButtonText="Add to Watchlist"
-    actionButtonClass="bg-green-500 hover:bg-green-600"
-    (actionClick)="addToWatchlist($event)"
+    [actionButtonText]="getMovieAction(movie).text"
+    [actionButtonClass]="getMovieAction(movie).class"
+    (actionClick)="onMovieAction($event)"
   ></app-movie-card>
 </div>

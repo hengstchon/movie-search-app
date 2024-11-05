@@ -56,7 +56,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  addToWatchlist(movie: Movie) {
-    this.watchlistService.addToWatchlist(movie);
+  getMovieAction(movie: Movie) {
+    return this.watchlistService.isInWatchlist(movie)
+      ? { text: 'Remove', class: 'bg-red-500 hover:bg-red-600' }
+      : { text: 'Add to Watchlist', class: 'bg-green-500 hover:bg-green-600' };
+  }
+
+  onMovieAction(movie: Movie) {
+    if (this.watchlistService.isInWatchlist(movie)) {
+      this.watchlistService.removeFromWatchlist(movie);
+    } else {
+      this.watchlistService.addToWatchlist(movie);
+    }
   }
 }
